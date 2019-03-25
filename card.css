@@ -1,0 +1,54 @@
+.snyder-card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.snyder-blocks-card {
+  transition: transform 200ms;
+  padding: 0;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: 0 0 5px 2px gray;
+  margin: 30px!important;
+  min-height: 350px;
+  max-width: 250px;
+  min-width: 33%;
+  display: flex;
+  align-items: center;
+  text-decoration: none!important;
+}
+
+.snyder-blocks-card:hover {
+  transform: scale(1.05);
+}
+
+.snyder-card-title-bar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 125px;
+  width: 100%;
+}
+
+.snyder-card-title-bar-overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: inherit;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.snyder-card-title, .snyder-card-subtitle {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  color: white;
+}
