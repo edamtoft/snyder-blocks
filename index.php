@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Snyder Blocks
  * Description: Camp Snyder Custom Components
- * Version: 0.0.1
+ * Version: 0.0.2
  * Author: Eric Damtoft
  *
  * @package snyder-blocks

@@ -1,6 +1,6 @@
 const { registerBlockType } = wp.blocks;
 const { PlainText, MediaUpload, InspectorControls, ColorPalette } = wp.editor;
-const { Button, TextControl, RangeControl } = wp.components;
+const { Button, TextControl, RangeControl, CheckboxControl } = wp.components;
 
 registerBlockType("snyder-blocks/card", {
   title: "Snyder Card",
@@ -19,10 +19,11 @@ registerBlockType("snyder-blocks/card", {
     title: { type: "string" },
     subtitle: { type: "string" },
     link: { type: "string" },
-    opacity: { type: "number" }
+    opacity: { type: "number" },
+    openInNewTab: { type: "boolean" }
   },
 
-  edit({ className, attributes: { title, subtitle, link, overlayColor, backgroundImage, backgroundImageId, fontColor, opacity }, setAttributes }) {
+  edit({ className, attributes: { title, subtitle, link, overlayColor, backgroundImage, backgroundImageId, fontColor, opacity, openInNewTab }, setAttributes }) {
     return <div className={className + " snyder-blocks-card"} style={{ backgroundImage: `url(${backgroundImage})` }}>
       <InspectorControls>
         <div>
@@ -33,6 +34,9 @@ registerBlockType("snyder-blocks/card", {
         </div>
         <div>
           <TextControl label="Link" value={link} onChange={value => setAttributes({ link: value })} />
+        </div>
+        <div>
+          <CheckboxControl label="Open In New Tab" value={openInNewTab} onChange={value => setAttributes({ openInNewTab: value })} />
         </div>
         <div>
           <strong>Background Image:</strong>
@@ -61,8 +65,8 @@ registerBlockType("snyder-blocks/card", {
     </div>;
   },
 
-  save({ attributes: { title, subtitle, link, backgroundImage, overlayColor, fontColor, opacity } }) {
-    return <a href={link} className="snyder-blocks-card" style={{ backgroundImage: `url(${backgroundImage})` }}>
+  save({ attributes: { title, subtitle, link, backgroundImage, overlayColor, fontColor, opacity, openInNewTab } }) {
+    return <a href={link} target={openInNewTab ? "_blank" : undefined } className="snyder-blocks-card" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="snyder-card-title-bar">
         <div className="snyder-card-title-bar-overlay" style={{ backgroundColor: overlayColor, opacity: opacity / 100 }}></div>
         <h3 className="snyder-card-title" style={{ color: fontColor }}>{title}</h3>
